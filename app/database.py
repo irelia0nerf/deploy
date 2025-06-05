@@ -1,7 +1,7 @@
-from pymongo import MongoClient
+from motor.motor_asyncio import AsyncIOMotorClient
 import os
 
 MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://mongo:27017")
-client = MongoClient(MONGODB_URI)
+client = AsyncIOMotorClient(MONGODB_URI)
 db = client["foundlab"]
 events = db["score_events"]
