@@ -1,6 +1,7 @@
 fastapi
 uvicorn
-pymongo>=4.3.3
+motor
 pydantic
 python-dotenv
 requests
+httpx

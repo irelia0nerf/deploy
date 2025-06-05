@@ -3,9 +3,11 @@ import threading
 import time
 import requests
 import os
+import logging
 
 WEBHOOK_URL = os.getenv("WEBHOOK_URL", "http://localhost:8001/webhook/score-event/")
 event_queue = queue.Queue()
+logger = logging.getLogger(__name__)
 
 def send_event(event):
     retries = 3
@@ -13,14 +15,14 @@ def send_event(event):
         try:
             r = requests.post(WEBHOOK_URL, json=event, timeout=5)
             if r.status_code == 200:
-                print(f"[Webhook] Entregue com sucesso.")
+                logger.info("[Webhook] Entregue com sucesso.")
                 return "delivered"
             else:
-                print(f"[Webhook] Erro HTTP {r.status_code}. Tentando novamente...")
+                logger.warning("[Webhook] Erro HTTP %s. Tentando novamente...", r.status_code)
         except Exception as e:
-            print(f"[Webhook] Falha no envio: {e}")
+            logger.error("[Webhook] Falha no envio: %s", e)
         time.sleep(2)
-    print("[Webhook] Todas as tentativas falharam.")
+    logger.error("[Webhook] Todas as tentativas falharam.")
     return "failed"
 
 def worker():
