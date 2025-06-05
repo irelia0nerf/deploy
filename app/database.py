@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import os
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongo:27017")
-client = MongoClient(MONGO_URI)
+MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://mongo:27017")
+client = MongoClient(MONGODB_URI)
 db = client["foundlab"]
 events = db["score_events"]
