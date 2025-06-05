@@ -19,7 +19,8 @@ a) Clone o repositório:
 
 b) Crie o arquivo `.env` na raiz do projeto com:
    API_KEY=SuperSenhaUltraSecreta_2024!
-   MONGODB_URI=mongodb+srv://Zane:root@cluster0.kvya5a3.mongodb.net/foundlab?retryWrites=true&w=majority&appName=Cluster0
+    MONGODB_URI="mongodb+srv://usuario:senha123@cluster0.exemplo.mongodb.net/banco_ficticio?retryWrites=true&w=majority&appName=Cluster0"
+    (Substitua `usuario`, `senha123`, `cluster0.exemplo.mongodb.net` e `banco_ficticio` pelos seus dados reais do MongoDB Atlas)
 
 c) Build & execute usando Docker:
    docker build -t foundlab-api .
